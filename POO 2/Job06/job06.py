@@ -1,8 +1,8 @@
 class Commande:
-    def __init__(self, numero_commande):
+    def __init__(self, numero_commande, statut_commande="en cours"):
         self._numero_commande = numero_commande
         self._plats_commandes = {}
-        self._statut_commande = "en cours"
+        self._statut_commande = statut_commande
 
     # Méthode privée pour calculer le total d'une commande
     def _calculer_total(self):
@@ -34,6 +34,11 @@ class Commande:
         print(f"TVA ({taux_tva}%): {tva} €")
         return tva
 
+    # Méthode pour modifier le statut de la commande
+    def modifier_statut(self, nouveau_statut):
+        self._statut_commande = nouveau_statut
+        print(f"Statut de la commande mis à jour : {nouveau_statut}")
+
 
 # Exemple d'utilisation de la classe Commande avec les nouvelles fonctionnalités
 commande_instance = Commande("123")
@@ -46,10 +51,10 @@ commande_instance.ajouter_plat("Pâtes", 10.0)
 # Affichage de la commande
 commande_instance.afficher_commande()
 
-# Annulation de la commande
-commande_instance.annuler_commande()
+# Modification du statut de la commande à "terminée"
+commande_instance.modifier_statut("terminée")
 
-# Affichage de la commande annulée
+# Affichage de la commande avec le nouveau statut
 commande_instance.afficher_commande()
 
 # Calcul de la TVA
